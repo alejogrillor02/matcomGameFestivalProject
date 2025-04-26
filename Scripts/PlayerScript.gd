@@ -16,6 +16,17 @@ func _ready():
 	astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar_grid.update()
 	
+	for x in tile_map.get_used_rect().size.x:
+		for y in tile_map.get_used_rect().size.y:
+			var tile_position = Vector2i(
+				x + tile_map.get_used_rect().position.x,
+				y + tile_map.get_used_rect().position.y
+			)
+			var tile_data = tile_map.get_cell_tile_data(0, tile_position)
+			
+			if tile_data == null or tile_data.get_custom_data("impassable"):
+				astar_grid.set_point_solid(tile_position)
+			 
 func _input(event):
 	#Tomar click izquierdo del mouse
 	if event.is_action_pressed("move_left_click") == false:
@@ -44,7 +55,3 @@ func _physics_process(delta):
 	#Va removiendo las casillas restantes del camino hasta terminarlo
 	if global_position == target_position:
 		current_id_path.pop_front()
-		
-		
-		
-		
