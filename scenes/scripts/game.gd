@@ -57,11 +57,10 @@ func _on_move_timer_timeout() -> void:
 			valid_dirs = valid_dirs.filter(func(item): return item != "W")
 		else:
 			valid_dirs = valid_dirs.filter(func(item): return item != "E")
-			
-		# TODO: Seleccionar entre las direcciones posibles una aleatoria y moverse
 		
+		dwarf_dir = valid_dirs.pick_random()
 	else:
-		pass
+		dwarf_dir = valid_dirs[0]
 		
-		# TODO: Moverse hacia atras
+	# TODO: Moverse hacia atras
 	
