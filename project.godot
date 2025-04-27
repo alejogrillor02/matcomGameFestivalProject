@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Conway's Vines"
-run/main_scene="res://Scenes/game.tscn"
+config/name="Drunken Dwarf"
+run/main_scene="uid://cy28o727ksiaq"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="uid://cftwk0uir12oq"
 
