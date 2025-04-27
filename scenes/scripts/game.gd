@@ -8,7 +8,6 @@ extends Node2D
 @onready var press_space_text = $CanvasLayer/PressSpaceText
 
 
-
 var dirs = {
 	"N": Vector2i(0, 1),
 	"S": Vector2i(0, -1),
@@ -45,16 +44,14 @@ func _ready() -> void:
 
 
 func _process(_delta):
-	
 	if not game_started and Input.is_action_just_pressed("ui_accept"):
 		game_started = true
 		$MoveTimer.start()
 		$CanvasLayer.hide()
 		
-		# Inicia la animación de alejamiento de la cámara
+		# Animación de alejamiento de la cámara
 		var tween = create_tween()
 		tween.tween_property(camera, "zoom", Vector2(2, 2), 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-	
 
 
 func local_to_used_rect(pixel_pos: Vector2) -> Vector2i:
