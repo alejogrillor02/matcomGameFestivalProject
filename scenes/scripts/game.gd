@@ -3,7 +3,17 @@ extends Node2D
 @onready var tile_map: TileMap = $TileMap
 @onready var move_timer: Timer = $MoveTimer
 
-@export var grid: Array = []
+var dirs = {
+	"N": Vector2i(0, 1),
+	"S": Vector2i(0, -1),
+	"E": Vector2i(1, 0),
+	"W": Vector2i(-1, 0)
+}
+
+var dwarf_pos = Vector2i(5, 5)
+var dwarf_dir = dirs["N"]
+
+var grid: Array = []
 
 
 func _ready() -> void:
@@ -22,9 +32,36 @@ func _ready() -> void:
 				grid[y].append(0)
 			else:
 				grid[y].append(1)
-
+	
 	#print(grid)
 
 
 func _on_move_timer_timeout() -> void:
-	pass
+	# Logica del movimiento
+	var path_count = 0
+	
+	var valid_dirs: Array = []
+	
+	for dir in dirs:
+		var nx = dwarf_pos.x + dirs[dir].x
+		var ny = dwarf_pos.y + dirs[dir].y
+		
+		if grid[ny][nx] == 1:
+			valid_dirs.append(dir)
+	if valid_dirs.size() != 1:		
+		if dwarf_dir == "N":
+			valid_dirs = valid_dirs.filter(func(item): return item != "S")
+		elif dwarf_dir == "S":
+			valid_dirs = valid_dirs.filter(func(item): return item != "N")
+		elif dwarf_dir == "E":
+			valid_dirs = valid_dirs.filter(func(item): return item != "W")
+		else:
+			valid_dirs = valid_dirs.filter(func(item): return item != "E")
+			
+		# TODO: Seleccionar entre las direcciones posibles una aleatoria y moverse
+		
+	else:
+		pass
+		
+		# TODO: Moverse hacia atras
+	
