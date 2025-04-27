@@ -15,18 +15,10 @@ run/main_scene="uid://cy28o727ksiaq"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="uid://gdqpm5b2p0h"
 
-[input]
-
-move_left_click={
-"deadzone": 0.5,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
-]
-}
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-viewport/hdr_2d=true
 environment/defaults/default_clear_color=Color(0.137255, 0.137255, 0.137255, 1)
+2d/snap/snap_2d_transforms_to_pixel=true

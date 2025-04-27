@@ -2,7 +2,12 @@ extends Node2D
 
 @onready var tile_map: TileMap = $TileMap
 @onready var move_timer: Timer = $MoveTimer
-@onready var dwarf_instance: Node2D = null  # Guardaremos la instancia del enano aquí
+@onready var dwarf_instance: Node2D = $Dwarf # Guardaremos la instancia del enano aquí
+@onready var camera = $Camera2D
+@onready var title_text = $CanvasLayer/TitleText
+@onready var press_space_text = $CanvasLayer/PressSpaceText
+
+
 
 var dirs = {
 	"N": Vector2i(0, 1),
@@ -11,15 +16,16 @@ var dirs = {
 	"W": Vector2i(-1, 0)
 }
 
-var dwarf_pos = Vector2i(5, 5)
+var dwarf_pos: Vector2i
 var dwarf_dir = "E"
 
 var grid: Array = []
+var game_started = false
 
 
 func _ready() -> void:
-	# Crear instancia del enano en la posición inicial
-	spawn_dwarf_at_start()
+	# Determinar posición inicial basada en la posición del nodo
+	dwarf_pos = local_to_used_rect(dwarf_instance.position + Vector2(13, 13))
 	
 	# Preparar el Grid
 	for y in tile_map.get_used_rect().size.y:
@@ -36,29 +42,30 @@ func _ready() -> void:
 				grid[y].append(0)
 			else:
 				grid[y].append(1)
-				
-	$MoveTimer.start()
 
 
-func spawn_dwarf_at_start():
-	# Cargar la escena del enano
-	var dwarf_scene = preload("res://scenes/dwarf.tscn")
-	dwarf_instance = dwarf_scene.instantiate()
-	add_child(dwarf_instance)
+func _process(_delta):
 	
-	# Posicionar el enano en su posición inicial
-	var tile_center = used_rect_to_local(dwarf_pos) - Vector2(13, 13)
-	dwarf_instance.position = tile_center
+	if not game_started and Input.is_action_just_pressed("ui_accept"):
+		game_started = true
+		$MoveTimer.start()
+		$CanvasLayer.hide()
+		
+		# Inicia la animación de alejamiento de la cámara
+		var tween = create_tween()
+		tween.tween_property(camera, "zoom", Vector2(2, 2), 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
-	# Configurar la animación inicial
-	var animated_sprite = dwarf_instance.get_node("AnimatedSprite2D")
-	animated_sprite.play("walk")
-	
-	# Configurar flip horizontal según dirección inicial
-	if dwarf_dir == "E":
-		animated_sprite.flip_h = false
-	else:
-		animated_sprite.flip_h = true
+
+
+func local_to_used_rect(pixel_pos: Vector2) -> Vector2i:
+	# Convertir posición en píxeles a coordenadas del used_rect
+	var tile_pos = tile_map.local_to_map(pixel_pos)
+	var used_rect = tile_map.get_used_rect()
+	return Vector2i(
+		tile_pos.x - used_rect.position.x,
+		tile_pos.y - used_rect.position.y
+	)
+
 
 func used_rect_to_local(pos: Vector2i):
 	var used_rect = tile_map.get_used_rect()
