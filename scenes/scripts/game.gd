@@ -6,6 +6,7 @@ extends Node2D
 @onready var camera = $Camera2D
 @onready var title_text = $CanvasLayer/TitleText
 @onready var press_space_text = $CanvasLayer/PressSpaceText
+@onready var restart_button = $ButtonLayer/Button
 
 
 var dirs = {
@@ -41,6 +42,8 @@ func _ready() -> void:
 				grid[y].append(0)
 			else:
 				grid[y].append(1)
+				
+	restart_button.disabled = true
 
 
 func _process(_delta):
@@ -52,6 +55,8 @@ func _process(_delta):
 		# Animación de alejamiento de la cámara
 		var tween = create_tween()
 		tween.tween_property(camera, "zoom", Vector2(2, 2), 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		
+		restart_button.disabled = false
 
 
 func local_to_used_rect(pixel_pos: Vector2) -> Vector2i:
