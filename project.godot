@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Drunken Dwarf"
+config/name="Drunken Dwarves"
+config/version="1.0"
 run/main_scene="uid://c087qn6yj835c"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="uid://gdqpm5b2p0h"

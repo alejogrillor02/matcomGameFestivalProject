@@ -119,7 +119,6 @@ script = ExtResource("3_4p0dt")
 position = Vector2(81, 0)
 
 [node name="Dwarf" parent="." instance=ExtResource("5_udddc")]
-metadata/direction = "\"E\""
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Dwarf"]
 remote_path = NodePath("../../Camera2D")

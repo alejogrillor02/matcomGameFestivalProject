@@ -2,13 +2,14 @@ extends Node2D
 
 @onready var tile_map: TileMap = $TileMap
 @onready var move_timer: Timer = $MoveTimer
-@onready var dwarf_instance: Node2D = $Dwarf # Guardaremos la instancia del enano aquí
+@onready var dwarf_instance: Node2D = $Dwarf
 @onready var camera = $Camera2D
 @onready var title_text = $CanvasLayer/TitleText
 @onready var press_space_text = $CanvasLayer/PressSpaceText
 @onready var restart_button = $ButtonLayer/RestartButton
-
-@onready var exit_instance = $exit # Instancia de la salida
+@onready var sign_button = $ButtonLayer/SignButton
+@onready var sign_preview: Sprite2D = $SignPreview
+@onready var exit_instance = $exit
 
 var dirs = {
 	"N": Vector2i(0, 1),
@@ -17,13 +18,19 @@ var dirs = {
 	"W": Vector2i(-1, 0)
 }
 
-var dwarf_pos: Vector2i
 var dwarf_dir = "E"
+var sign_counter = 2
 
+var game_started = false
+var sign_placement_mode = false
+
+var dwarf_pos: Vector2i
 var exit_pos: Vector2i
+var current_sign_position: Vector2i
 
 var grid: Array = []
-var game_started = false
+var current_arrows: Array = []
+var signs_placed: Array = []
 
 func _ready() -> void:
 	
@@ -36,6 +43,7 @@ func _ready() -> void:
 	# Posición de la salida
 	exit_pos = local_to_used_rect(exit_instance.position + Vector2(13, 13))
 	
+	dwarf_instance.get_node("AnimatedSprite2D").play("idle")
 	
 	# Preparar el Grid
 	for y in tile_map.get_used_rect().size.y:
@@ -58,9 +66,6 @@ func _ready() -> void:
 
 
 func _process(_delta):
-	#print($CanvasLayer/TitleText.text)
-	#$CanvasLayer/TitleText.text="AASSEAs"
-	#print($CanvasLayer/TitleText.text)
 	if not game_started and Input.is_action_just_pressed("ui_accept"):
 		game_started = true
 		$MoveTimer.start()
@@ -69,6 +74,8 @@ func _process(_delta):
 		# Animación de alejamiento de la cámara
 		var tween = create_tween()
 		tween.tween_property(camera, "zoom", Vector2(2, 2), 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+		
+		dwarf_instance.get_node("AnimatedSprite2D").play("walk")
 		
 		# Habilitar el boton de reinicio
 		restart_button.disabled = false
@@ -124,11 +131,11 @@ func _on_move_timer_timeout() -> void:
 	else:
 		dwarf_dir = valid_dirs[0]
 		
-	if(dwarf_pos!=exit_pos):
+	if(dwarf_pos != exit_pos):
 		move_dwarf(dwarf_dir)
 		$MoveTimer.start()
 	else:
-		#$MoveTimer.stop()
+		dwarf_instance.get_node("AnimatedSprite2D").play("win")
 		await get_tree().create_timer(2).timeout
 		
 		#Cargar proxima escena a partir del path
@@ -151,6 +158,3 @@ func move_dwarf(direction: String):
 		animated_sprite.flip_h = false
 	elif direction == "W":
 		animated_sprite.flip_h = true
-
-	if not animated_sprite.is_playing():
-		animated_sprite.play("walk")

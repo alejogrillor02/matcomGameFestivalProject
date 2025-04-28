@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://oke1qa0grqi8"]
+[gd_scene load_steps=13 format=3 uid="uid://oke1qa0grqi8"]
 
 [ext_resource type="Texture2D" uid="uid://c3n2v4o33qwts" path="res://assets/dwarf_animations.png" id="1_wi5fx"]
 
@@ -34,6 +34,14 @@ region = Rect2(52, 26, 26, 26)
 atlas = ExtResource("1_wi5fx")
 region = Rect2(78, 26, 26, 26)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi5fx"]
+atlas = ExtResource("1_wi5fx")
+region = Rect2(52, 52, 26, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b2rf"]
+atlas = ExtResource("1_wi5fx")
+region = Rect2(78, 52, 26, 26)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7b2rf"]
 animations = [{
 "frames": [{
@@ -68,6 +76,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi5fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b2rf")
+}],
+"loop": true,
+"name": &"win",
 "speed": 5.0
 }]
 

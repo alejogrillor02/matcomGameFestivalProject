@@ -52,7 +52,7 @@ font = ExtResource("2_uin0t")
 script = ExtResource("1_1kyir")
 
 [node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
@@ -115,11 +115,19 @@ theme_override_fonts/font = ExtResource("2_uin0t")
 text = "RESTART"
 script = ExtResource("3_76388")
 
+[node name="SignButton" type="Button" parent="ButtonLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 100.0
+grow_vertical = 0
+text = "Poner Señal"
+
 [node name="exit" parent="." instance=ExtResource("6_ewlrm")]
 position = Vector2(81, 0)
 
 [node name="Dwarf" parent="." instance=ExtResource("5_b4wph")]
-metadata/direction = "\"E\""
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Dwarf"]
 remote_path = NodePath("../../Camera2D")
