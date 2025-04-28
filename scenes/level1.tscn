@@ -1,0 +1,180 @@
+[gd_scene load_steps=16 format=3 uid="uid://bva1txnja0hd8"]
+
+[ext_resource type="Script" uid="uid://1pm4wy2tbxuh" path="res://scenes/scripts/game.gd" id="1_ejswk"]
+[ext_resource type="Texture2D" uid="uid://bvluu63jirxfb" path="res://assets/tileset_background.png" id="2_bbk5w"]
+[ext_resource type="FontFile" uid="uid://rwfovw7hwqxa" path="res://assets/tinypixel.otf" id="3_conm7"]
+[ext_resource type="Script" uid="uid://dqwjragourw8j" path="res://scenes/scripts/restart_button.gd" id="4_d3jkd"]
+[ext_resource type="PackedScene" uid="uid://uq52rolr0k7w" path="res://scenes/exit.tscn" id="5_u3awl"]
+[ext_resource type="PackedScene" uid="uid://oke1qa0grqi8" path="res://scenes/dwarf.tscn" id="6_2ku1j"]
+[ext_resource type="Texture2D" uid="uid://de620r3054h80" path="res://assets/sign.png" id="6_conm7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
+texture = ExtResource("2_bbk5w")
+texture_region_size = Vector2i(26, 26)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:1/0/custom_data_0 = true
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lnu2h"]
+tile_size = Vector2i(26, 26)
+navigation_layer_0/layers = 1
+custom_data_layer_0/name = "path"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_yqjtg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_lnu2h"]
+font = ExtResource("3_conm7")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_lbhrr"]
+font = ExtResource("3_conm7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq7dk"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_encmo"]
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jsto"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d3jkd"]
+font = ExtResource("3_conm7")
+font_size = 19
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_ejswk")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-13, -13)
+tile_set = SubResource("TileSet_lnu2h")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 1, 1, 65536, 1, 3, 65536, 1, -65533, 65536, 0, 65539, 65536, 2, 131075, 196608, 0, 196611, 196608, 0, 196610, 196608, 0, 196609, 196608, 0, 196608, 196608, 0, 262143, 196608, 0, 4, 65536, 1, 5, 65536, 1, 6, 65536, 1, -65531, 262144, 2, -65530, 65536, 1, 131072, 196608, 0, 131073, 196608, 0, -65536, 65536, 0, 262144, 196608, 0, 262145, 196608, 0, 262146, 196608, 0, 327679, 196608, 0, 65541, 65536, 2, 65542, 65536, 2, -1, 0, 0, -65532, 65536, 0, 65540, 65536, 2, 131076, 196608, 0, 65538, 65536, 2, 131074, 196608, 0, 262147, 196608, 0, 196612, 196608, 0, 262148, 196608, 0, 131071, 0, 2, 196607, 196608, 0, -3, 196608, 0, 65533, 196608, 0, 131069, 196608, 0, 196605, 196608, 0, 262141, 196608, 0, 262142, 196608, 0, -2, 196608, 0, 65534, 196608, 0, 131070, 196608, 0, 7, 65536, 1, 65543, 65536, 2, 327678, 196608, 0, 196606, 196608, 0, 65535, 0, 1, 65536, 65536, 2, 65537, 65536, 2, 327677, 196608, 0, 327676, 196608, 0, 262140, 196608, 0, 196604, 196608, 0, 131068, 196608, 0, 65532, 196608, 0, -4, 196608, 0, 2, 65536, 1, -65534, 65536, 0, -65535, 65536, 0, 131078, 196608, 0, 196614, 196608, 0, 262150, 196608, 0, 65531, 196608, 0, 65530, 196608, 0, -6, 196608, 0, -5, 196608, 0, 262151, 196608, 0, 196615, 196608, 0, 131079, 196608, 0, -196615, 196608, 0, -131079, 196608, 0, -65543, 196608, 0, -7, 196608, 0, 65529, 196608, 0, 131066, 196608, 0, 131067, 196608, 0, 327686, 196608, 0, 131065, 196608, 0, 327685, 0, 2, 327687, 196608, 0, 131077, 196608, 0, 196613, 196608, 0, 262149, 196608, 0, 65544, 65536, 2, 65545, 65536, 2, 65546, 262144, 1, 65547, 65536, 1, 8, 65536, 1, 9, 65536, 1, 10, 65536, 1, 11, 65536, 1, 12, 65536, 1, 13, 65536, 1, 196601, 196608, 0, 196602, 196608, 0, 196603, 196608, 0, 14, 65536, 1, 15, 65536, 1, -131066, 65536, 1, -196602, 65536, 1, -262138, 65536, 1, -327674, 65536, 1, -65529, 196608, 2, -65528, 65536, 0, -65527, 65536, 0, -65526, 65536, 0, -65525, 65536, 0, -65524, 65536, 0, -65523, 65536, 0, -65522, 65536, 0, -65521, 65536, 0, -65520, 131072, 0, 16, 131072, 1, 65552, 131072, 2, 65551, 65536, 2, 65550, 65536, 2, 65549, 65536, 2, 65548, 196608, 1, -393210, 65536, 0, -393211, 0, 0, -393209, 131072, 0, -327673, 131072, 1, -262137, 131072, 1, -196601, 131072, 1, -131065, 131072, 1, -131067, 0, 1, -196603, 0, 1, -262139, 0, 1, -327675, 0, 1, 131083, 65536, 1, 196619, 65536, 1, 262155, 65536, 1, 131082, 0, 1, 196618, 0, 1, 262154, 0, 1, 131084, 131072, 1, 196620, 131072, 1, 262156, 131072, 1, 327692, 131072, 2, 327691, 65536, 2, 327690, 0, 2)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleText" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.5
+offset_top = -111.0
+offset_right = 111.5
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Level "
+label_settings = SubResource("LabelSettings_lnu2h")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PressSpaceText" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = 53.0
+offset_right = 108.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.32, 1.32)
+size_flags_horizontal = 4
+text = "Press Spacebar to start..."
+label_settings = SubResource("LabelSettings_lbhrr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonLayer" type="CanvasLayer" parent="."]
+
+[node name="RestartButton" type="Button" parent="ButtonLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -172.0
+offset_top = 24.0
+offset_right = -27.0
+offset_bottom = 67.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_conm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kq7dk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_encmo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0jsto")
+text = "RESTART"
+script = ExtResource("4_d3jkd")
+
+[node name="SignButton" type="Button" parent="ButtonLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -82.0
+offset_right = 121.0
+offset_bottom = -24.0
+grow_vertical = 0
+icon = ExtResource("6_conm7")
+expand_icon = true
+
+[node name="Label" type="Label" parent="ButtonLayer/SignButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.399
+anchor_top = 0.5
+anchor_right = 0.399
+anchor_bottom = 0.5
+offset_left = 4.297
+offset_top = -5.5
+offset_right = 59.297
+offset_bottom = 21.5
+text = "xN"
+label_settings = SubResource("LabelSettings_d3jkd")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SignPreview" type="Sprite2D" parent="."]
+texture = ExtResource("6_conm7")
+
+[node name="Exit" parent="." instance=ExtResource("5_u3awl")]
+position = Vector2(390, 3)
+
+[node name="Dwarf" parent="." instance=ExtResource("6_2ku1j")]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Dwarf"]
+remote_path = NodePath("../../Camera2D")
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="pressed" from="ButtonLayer/RestartButton" to="ButtonLayer/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="ButtonLayer/SignButton" to="." method="_on_sign_button_pressed"]

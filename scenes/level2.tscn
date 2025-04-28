@@ -1,0 +1,180 @@
+[gd_scene load_steps=16 format=3 uid="uid://b51pr7u3xptgd"]
+
+[ext_resource type="Script" uid="uid://1pm4wy2tbxuh" path="res://scenes/scripts/game.gd" id="1_ejswk"]
+[ext_resource type="Texture2D" uid="uid://bvluu63jirxfb" path="res://assets/tileset_background.png" id="2_bbk5w"]
+[ext_resource type="FontFile" uid="uid://rwfovw7hwqxa" path="res://assets/tinypixel.otf" id="3_conm7"]
+[ext_resource type="Script" uid="uid://dqwjragourw8j" path="res://scenes/scripts/restart_button.gd" id="4_d3jkd"]
+[ext_resource type="PackedScene" uid="uid://uq52rolr0k7w" path="res://scenes/exit.tscn" id="5_u3awl"]
+[ext_resource type="PackedScene" uid="uid://oke1qa0grqi8" path="res://scenes/dwarf.tscn" id="6_2ku1j"]
+[ext_resource type="Texture2D" uid="uid://de620r3054h80" path="res://assets/sign.png" id="6_conm7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
+texture = ExtResource("2_bbk5w")
+texture_region_size = Vector2i(26, 26)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:1/0/custom_data_0 = true
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_lnu2h"]
+tile_size = Vector2i(26, 26)
+navigation_layer_0/layers = 1
+custom_data_layer_0/name = "path"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_yqjtg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_lnu2h"]
+font = ExtResource("3_conm7")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_lbhrr"]
+font = ExtResource("3_conm7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq7dk"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_encmo"]
+bg_color = Color(0.239216, 0.239216, 0.239216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jsto"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d3jkd"]
+font = ExtResource("3_conm7")
+font_size = 19
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_ejswk")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(-13, -13)
+tile_set = SubResource("TileSet_lnu2h")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 65536, 1, 1, 65536, 1, 3, 65536, 1, -65533, 65536, 0, -131069, 65536, 2, 65539, 65536, 1, 131075, 65536, 1, 196611, 65536, 1, 196610, 65536, 1, 196609, 65536, 1, 196608, 65536, 1, 262143, 65536, 1, 4, 65536, 1, 5, 65536, 1, 6, 65536, 1, -65531, 262144, 2, -65530, 65536, 1, 131072, 65536, 0, 131073, 65536, 0, -65536, 65536, 0, -131072, 65536, 2, -131071, 65536, 2, 262144, 65536, 2, 262145, 65536, 2, 262146, 65536, 2, 327679, 65536, 2, 65541, 65536, 2, 65542, 262144, 1, -1, 0, 0, -131070, 65536, 2, -65532, 65536, 0, -131068, 65536, 2, 65540, 196608, 1, 131076, 131072, 1, 65538, 262144, 1, 131074, 262144, 2, 262147, 65536, 2, 196612, 131072, 1, 262148, 131072, 2, 131071, 0, 2, 196607, 65536, 0, -65537, 65536, 2, 65535, 0, 1, 65536, 65536, 2, 65537, 65536, 2, 2, 65536, 1, -65534, 65536, 0, -65535, 65536, 0, -131066, 65536, 1, 131078, 0, 1, 196614, 0, 1, 262150, 0, 1, 327686, 0, 2, -131067, 262144, 1, 327685, 196608, 0, 327687, 65536, 2, 131077, 196608, 0, 196613, 196608, 0, 262149, 196608, 0, 262142, 65536, 1, 196606, 196608, 2, 131070, 131072, 1, 65534, 131072, 1, -2, 131072, 1, -65538, 196608, 1, -131074, 65536, 1, -131073, 65536, 1, -196608, 65536, 1, -196607, 65536, 1, -196606, 65536, 1, -196605, 65536, 1, -131075, 65536, 1, -65539, 65536, 1, -3, 65536, 1, 65533, 65536, 1, 131069, 65536, 1, 196605, 65536, 1, 262141, 65536, 1, 327678, 65536, 2, 327677, 65536, 2, 327676, 0, 2, 262140, 0, 1, 196604, 0, 1, 131068, 262144, 1, 65532, 65536, 1, -4, 262144, 2, -65540, 0, 1, -131076, 0, 1, -196612, 0, 1, -196611, 65536, 1, -196610, 196608, 2, -196609, 65536, 0, -262144, 262144, 2, -262143, 65536, 1, -262142, 196608, 2, -262141, 65536, 0, -262140, 65536, 0, -196604, 65536, 1, -196603, 65536, 1, -196602, 65536, 1, 327688, 65536, 2, 327689, 65536, 2, 327690, 65536, 2, 327691, 65536, 2, 327692, 65536, 2, 65543, 65536, 1, 131079, 65536, 1, 196615, 65536, 1, 262151, 65536, 1, 7, 65536, 1, -65529, 65536, 1, 262152, 65536, 1, 262153, 65536, 1, 262154, 65536, 1, 262155, 65536, 1, 262156, 65536, 1, 262157, 65536, 1, 196616, 196608, 2, 196617, 65536, 0, 196619, 262144, 2, 196620, 65536, 1, 196621, 196608, 2, 196622, 65536, 0, 196623, 65536, 0, 262158, 65536, 1, 262159, 65536, 1, 327693, 65536, 2, 327694, 65536, 2, 327695, 65536, 2, 327696, 131072, 2, 327697, 196608, 0, 196624, 131072, 0, 262160, 131072, 1, -131063, 65536, 2, -327671, 65536, 1, -327670, 65536, 1, -327669, 65536, 1, -327668, 65536, 1, -327667, 65536, 1, 131080, 131072, 1, 65544, 131072, 1, 8, 131072, 1, -65528, 131072, 1, -131064, 196608, 1, -196600, 65536, 1, -131065, 65536, 1, -196601, 65536, 1, -262139, 65536, 0, -262138, 65536, 0, -131061, 0, 1, -196597, 0, 1, -262133, 262144, 1, -196598, 131072, 1, -262134, 196608, 1, 65531, 65536, 1, 65530, 65536, 1, 65529, 0, 1, 65528, 196608, 0, 131064, 196608, 0, -8, 131072, 2, -7, 0, 0, -6, 65536, 0, -5, 65536, 0, 131065, 0, 2, 131066, 65536, 2, 131067, 65536, 2, -65542, 65536, 2, -131078, 65536, 1, -196614, 65536, 1, -262150, 65536, 1, -327686, 65536, 1, -327685, 65536, 1, -327684, 65536, 1, -327683, 65536, 1, -327682, 65536, 1, -327681, 65536, 1, -393216, 65536, 1, -393215, 65536, 1, -327679, 65536, 1, -327680, 262144, 1, -262145, 65536, 2, -262146, 196608, 1, -262147, 65536, 1, -262148, 262144, 1, -262149, 196608, 1, -196613, 131072, 1, -131077, 131072, 1, -65541, 131072, 2, -65543, 0, 2, -131079, 262144, 1, -196615, 65536, 1, -262151, 262144, 2, -327687, 0, 1, -393223, 0, 0, -393222, 65536, 0, -393221, 65536, 0, -393220, 65536, 0, -393219, 65536, 0, -393218, 65536, 0, -393217, 65536, 0, -458752, 65536, 0, -458751, 65536, 0, -458750, 131072, 0, -393214, 131072, 1, -327678, 131072, 1, -262137, 65536, 0, -262136, 262144, 2, -327672, 0, 1, -393208, 0, 0, -393207, 65536, 0, -393206, 65536, 0, -393205, 65536, 0, -393204, 65536, 0, -393203, 65536, 0, -393202, 131072, 0, -327666, 131072, 1, -262130, 131072, 2, -262131, 196608, 1, -262132, 65536, 1, 131084, 65536, 1, 65548, 65536, 1, 12, 65536, 1, -65524, 65536, 1, -131060, 65536, 1, -196596, 65536, 1, 131085, 131072, 1, 65549, 131072, 1, 13, 131072, 1, -65523, 131072, 1, -131059, 131072, 1, -196595, 131072, 1, 196618, 65536, 0, -131062, 131072, 2, -196599, 65536, 1, -262135, 65536, 1, -65525, 0, 1, 11, 0, 1, 65547, 0, 1, 131083, 0, 1, -196616, 65536, 1, -196617, 65536, 1, -131081, 65536, 1, -65545, 65536, 1, -262152, 65536, 0, -262153, 65536, 0, -262154, 0, 0, -196618, 0, 1, -131082, 0, 1, -65546, 0, 1, -131080, 196608, 1, -65544, 131072, 1, -9, 65536, 2, -10, 0, 2)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleText" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.5
+offset_top = -111.0
+offset_right = 111.5
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Level "
+label_settings = SubResource("LabelSettings_lnu2h")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PressSpaceText" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = 53.0
+offset_right = 108.0
+offset_bottom = 76.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.32, 1.32)
+size_flags_horizontal = 4
+text = "Press Spacebar to start..."
+label_settings = SubResource("LabelSettings_lbhrr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonLayer" type="CanvasLayer" parent="."]
+
+[node name="RestartButton" type="Button" parent="ButtonLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -172.0
+offset_top = 24.0
+offset_right = -27.0
+offset_bottom = 67.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_conm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kq7dk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_encmo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0jsto")
+text = "RESTART"
+script = ExtResource("4_d3jkd")
+
+[node name="SignButton" type="Button" parent="ButtonLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -82.0
+offset_right = 121.0
+offset_bottom = -24.0
+grow_vertical = 0
+icon = ExtResource("6_conm7")
+expand_icon = true
+
+[node name="Label" type="Label" parent="ButtonLayer/SignButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.399
+anchor_top = 0.5
+anchor_right = 0.399
+anchor_bottom = 0.5
+offset_left = 4.297
+offset_top = -5.5
+offset_right = 59.297
+offset_bottom = 21.5
+text = "xN"
+label_settings = SubResource("LabelSettings_d3jkd")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SignPreview" type="Sprite2D" parent="."]
+texture = ExtResource("6_conm7")
+
+[node name="Exit" parent="." instance=ExtResource("5_u3awl")]
+position = Vector2(-233, -50)
+
+[node name="Dwarf" parent="." instance=ExtResource("6_2ku1j")]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Dwarf"]
+remote_path = NodePath("../../Camera2D")
+
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="pressed" from="ButtonLayer/RestartButton" to="ButtonLayer/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="ButtonLayer/SignButton" to="." method="_on_sign_button_pressed"]
