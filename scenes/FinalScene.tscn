@@ -1,7 +1,13 @@
 [gd_scene load_steps=8 format=3 uid="uid://bl3bjuvkjpedo"]
 
-[ext_resource type="Script" path="res://scenes/MenuScript.gd" id="1_jtdfa"]
 [ext_resource type="FontFile" uid="uid://rwfovw7hwqxa" path="res://assets/tinypixel.otf" id="2_h62xl"]
+
+[sub_resource type="GDScript" id="GDScript_o4wip"]
+script/source = "extends Control
+
+func _on_exit_pressed():
+	get_tree().quit()
+"
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41yt3"]
 
@@ -23,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_jtdfa")
+script = SubResource("GDScript_o4wip")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
