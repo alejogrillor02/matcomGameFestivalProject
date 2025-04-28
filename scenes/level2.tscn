@@ -1,12 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc3n38k7dyvr2"]
+[gd_scene load_steps=9 format=3 uid="uid://cc3n38k7dyvr2"]
 
 [ext_resource type="FontFile" uid="uid://rwfovw7hwqxa" path="res://assets/tinypixel.otf" id="2_h62xl"]
+[ext_resource type="PackedScene" uid="uid://oke1qa0grqi8" path="res://scenes/dwarf.tscn" id="2_if4l3"]
 
 [sub_resource type="GDScript" id="GDScript_o4wip"]
 script/source = "extends Control
 
+@onready var dwarf_instance: Node2D = $CanvasLayer/Title/Dwarf
+
+
 func _on_exit_pressed():
 	get_tree().quit()
+
+
+func _ready() -> void:
+	dwarf_instance.get_node(\"AnimatedSprite2D\").play(\"win\")
 "
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41yt3"]
@@ -70,9 +78,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -568.0
-offset_top = -376.0
+offset_top = -229.0
 offset_right = 112.0
-offset_bottom = -278.0
+offset_bottom = -131.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.68, 1.68)
@@ -82,5 +90,9 @@ text = "THANKS FOR PLAYING!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_exit_pressed"]
+[node name="Dwarf" parent="CanvasLayer/Title" instance=ExtResource("2_if4l3")]
+position = Vector2(339.286, -44.6429)
+scale = Vector2(3.85896, 3.85896)
+
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_exit_pressed"]

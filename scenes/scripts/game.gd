@@ -10,7 +10,8 @@ extends Node2D
 @onready var exit_instance = $Exit
 @onready var sign_button = $ButtonLayer/SignButton
 @onready var sign_preview: Sprite2D = $SignPreview
-@onready var dir_ui = $ButtonLayer/DirUI
+
+var sign_scene = preload("res://scenes/sign.tscn")
 
 var dirs = {
 	"N": Vector2i(0, 1),
@@ -27,7 +28,6 @@ var sign_placement_mode = false
 
 var dwarf_pos: Vector2i
 var exit_pos: Vector2i
-var current_sign_position: Vector2i
 
 var grid: Array = []
 var signs_placed: Array = []
@@ -62,10 +62,11 @@ func _ready() -> void:
 	
 	# Configurar boton
 	sign_button.get_node("Label").text = "x%d" % sign_counter
-	sign_button.pressed.connect(_on_sign_button_pressed)
 	
 	restart_button.disabled = true
 	sign_button.disabled = true
+	
+	sign_preview.hide()
 
 
 func _process(_delta) -> void:
@@ -108,31 +109,27 @@ func used_rect_to_local(pos: Vector2i) -> Vector2:
 func _on_move_timer_timeout() -> void:
 	# Lógica del movimiento
 	var valid_dirs: Array = []
-	var sign_direction = _check_for_sign(dwarf_pos)
-	
-	if sign_direction != "":
-		valid_dirs.append(sign_direction)
-	else:
-		for dir in dirs:
-			var nx = dwarf_pos.x + dirs[dir].x
-			var ny = dwarf_pos.y + dirs[dir].y
+
+	for dir in dirs:
+		var nx = dwarf_pos.x + dirs[dir].x
+		var ny = dwarf_pos.y + dirs[dir].y
+		
+		if grid[ny][nx] == 1 and not check_for_sign(Vector2i(nx, ny)):
+			valid_dirs.append(dir)
 			
-			if grid[ny][nx] == 1:
-				valid_dirs.append(dir)
-				
-		if valid_dirs.size() != 1:		
-			if dwarf_dir == "N":
-				valid_dirs = valid_dirs.filter(func(item): return item != "S")
-			elif dwarf_dir == "S":
-				valid_dirs = valid_dirs.filter(func(item): return item != "N")
-			elif dwarf_dir == "E":
-				valid_dirs = valid_dirs.filter(func(item): return item != "W")
-			else:
-				valid_dirs = valid_dirs.filter(func(item): return item != "E")
-			
-			dwarf_dir = valid_dirs.pick_random()
+	if valid_dirs.size() != 1:		
+		if dwarf_dir == "N":
+			valid_dirs = valid_dirs.filter(func(item): return item != "S")
+		elif dwarf_dir == "S":
+			valid_dirs = valid_dirs.filter(func(item): return item != "N")
+		elif dwarf_dir == "E":
+			valid_dirs = valid_dirs.filter(func(item): return item != "W")
 		else:
-			dwarf_dir = valid_dirs[0]
+			valid_dirs = valid_dirs.filter(func(item): return item != "E")
+		
+		dwarf_dir = valid_dirs.pick_random()
+	else:
+		dwarf_dir = valid_dirs[0]
 	
 	if(dwarf_pos != exit_pos):
 		move_dwarf(dwarf_dir)
@@ -176,42 +173,35 @@ func _input(event):
 		sign_preview.position = get_global_mouse_position()
 	
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			_exit_sign_placement_mode()
+			exit_sign_placement_mode()
 			
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			var tile_pos = tile_map.local_to_map(get_global_mouse_position())
+			var mouse_pos = get_global_mouse_position()
+			var tile_pos = tile_map.local_to_map(mouse_pos)
 			var tile_data = tile_map.get_cell_tile_data(0, tile_pos)
 			
+			if tile_data and tile_data.get_custom_data("path"):
+				place_sign(mouse_pos)
 			
-			if tile_data != null and tile_data.get_custom_data("path"):
-				var path_count = 0
-				
-				for dir in dirs:
-					var nx = dwarf_pos.x + dirs[dir].x
-					var ny = dwarf_pos.y + dirs[dir].y
-			
-					if grid[ny][nx] == 1:
-						path_count += 1
-				if path_count > 2:
-					current_sign_position = local_to_used_rect(get_global_mouse_position())
-					_place_sign(current_sign_position)
-				else:
-					pass
 			else:
-				_exit_sign_placement_mode()
+				exit_sign_placement_mode()
 
 
-func _place_sign(pos: Vector2i) -> void:
-	dir_ui.position = local_to_used_rect(pos)
+func place_sign(pos: Vector2) -> void:
+	var new_sign = sign_scene.instantiate()
+	new_sign.position = pos
+	add_child(new_sign)
+	exit_sign_placement_mode()
+	signs_placed.append(local_to_used_rect(pos))
 
 
-func _exit_sign_placement_mode():
+func exit_sign_placement_mode():
 	sign_placement_mode = false
 	sign_preview.hide()
 
 
-func _check_for_sign(tile_position: Vector2i) -> String:
+func check_for_sign(tile_position: Vector2i) -> bool:
 	for placed_sign in signs_placed:
-		if placed_sign["position"] == tile_position:
-			return placed_sign["direction"]
-	return ""
+		if placed_sign == tile_position:
+			return true
+	return false
