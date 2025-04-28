@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://0q5rhn11iw36"]
+
+[ext_resource type="Texture2D" uid="uid://3hynvp41bkyp" path="res://assets/post.png" id="1_w2mlg"]
+[ext_resource type="Texture2D" uid="uid://cb67st1yewykq" path="res://assets/sign.png" id="2_q3tny"]
+[ext_resource type="Texture2D" uid="uid://bjmbjyywjsbwf" path="res://assets/cross.png" id="3_8yyji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbceu"]
+size = Vector2(26, 26)
+
+[node name="Sign" type="Node2D"]
+
+[node name="Post" type="Sprite2D" parent="."]
+texture = ExtResource("1_w2mlg")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+texture = ExtResource("2_q3tny")
+
+[node name="Cross" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_8yyji")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_tbceu")

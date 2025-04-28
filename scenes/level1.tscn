@@ -1,15 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://c087qn6yj835c"]
+[gd_scene load_steps=19 format=3 uid="uid://c087qn6yj835c"]
 
-[ext_resource type="Script" path="res://scenes/scripts/game.gd" id="1_1kyir"]
-[ext_resource type="FontFile" uid="uid://rwfovw7hwqxa" path="res://assets/tinypixel.otf" id="2_uin0t"]
-[ext_resource type="Script" path="res://scenes/scripts/restart_button.gd" id="3_76388"]
-[ext_resource type="Texture2D" uid="uid://bvluu63jirxfb" path="res://assets/tileset_background.png" id="4_3ggg2"]
-[ext_resource type="PackedScene" uid="uid://oke1qa0grqi8" path="res://scenes/dwarf.tscn" id="5_b4wph"]
-[ext_resource type="PackedScene" uid="uid://uq52rolr0k7w" path="res://scenes/exit.tscn" id="6_ewlrm"]
-[ext_resource type="AudioStream" uid="uid://bhskxdq245jqb" path="res://assets/music/win_sound.mp3" id="7_1o258"]
+[ext_resource type="Script" uid="uid://1pm4wy2tbxuh" path="res://scenes/scripts/game.gd" id="1_ejswk"]
+[ext_resource type="Texture2D" uid="uid://bvluu63jirxfb" path="res://assets/tileset_background.png" id="2_bbk5w"]
+[ext_resource type="FontFile" uid="uid://rwfovw7hwqxa" path="res://assets/tinypixel.otf" id="3_conm7"]
+[ext_resource type="Script" uid="uid://dqwjragourw8j" path="res://scenes/scripts/restart_button.gd" id="4_d3jkd"]
+[ext_resource type="Texture2D" uid="uid://3hynvp41bkyp" path="res://assets/post.png" id="5_bbk5w"]
+[ext_resource type="Texture2D" uid="uid://cvipyh78dx1hp" path="res://assets/sign_preview.png" id="5_conm7"]
+[ext_resource type="PackedScene" uid="uid://uq52rolr0k7w" path="res://scenes/exit.tscn" id="5_u3awl"]
+[ext_resource type="PackedScene" uid="uid://oke1qa0grqi8" path="res://scenes/dwarf.tscn" id="6_2ku1j"]
+[ext_resource type="Texture2D" uid="uid://cb67st1yewykq" path="res://assets/sign.png" id="6_conm7"]
+[ext_resource type="Texture2D" uid="uid://dqedreffjph05" path="res://assets/arrow.png" id="6_d3jkd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
-texture = ExtResource("4_3ggg2")
+texture = ExtResource("2_bbk5w")
 texture_region_size = Vector2i(26, 26)
 0:0/0 = 0
 1:0/0 = 0
@@ -43,14 +46,11 @@ custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
 [sub_resource type="LabelSettings" id="LabelSettings_lnu2h"]
-font = ExtResource("2_uin0t")
+font = ExtResource("3_conm7")
 font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_lbhrr"]
-font = ExtResource("2_uin0t")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jsto"]
-bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+font = ExtResource("3_conm7")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq7dk"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -58,8 +58,15 @@ bg_color = Color(0.2, 0.2, 0.2, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_encmo"]
 bg_color = Color(0.239216, 0.239216, 0.239216, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jsto"]
+bg_color = Color(0.109804, 0.109804, 0.109804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_d3jkd"]
+font = ExtResource("3_conm7")
+font_size = 19
+
 [node name="Level1" type="Node2D"]
-script = ExtResource("1_1kyir")
+script = ExtResource("1_ejswk")
 
 [node name="MoveTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -117,37 +124,108 @@ autowrap_mode = 2
 [node name="ButtonLayer" type="CanvasLayer" parent="."]
 
 [node name="RestartButton" type="Button" parent="ButtonLayer"]
-offset_left = 1039.0
-offset_top = 26.0
-offset_right = 1126.0
-offset_bottom = 106.0
-theme_override_fonts/font = ExtResource("2_uin0t")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0jsto")
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -172.0
+offset_top = 24.0
+offset_right = -27.0
+offset_bottom = 67.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("3_conm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_kq7dk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_encmo")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0jsto")
 text = "RESTART"
-script = ExtResource("3_76388")
+script = ExtResource("4_d3jkd")
 
 [node name="SignButton" type="Button" parent="ButtonLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -31.0
-offset_right = 100.0
+offset_left = 24.0
+offset_top = -82.0
+offset_right = 121.0
+offset_bottom = -24.0
 grow_vertical = 0
-text = "Poner Señal"
+icon = ExtResource("5_conm7")
+expand_icon = true
 
-[node name="exit" parent="." instance=ExtResource("6_ewlrm")]
-position = Vector2(81, 0)
+[node name="Label" type="Label" parent="ButtonLayer/SignButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.399
+anchor_top = 0.5
+anchor_right = 0.399
+anchor_bottom = 0.5
+offset_left = 4.297
+offset_top = -5.5
+offset_right = 59.297
+offset_bottom = 21.5
+text = "xN"
+label_settings = SubResource("LabelSettings_d3jkd")
+horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="Dwarf" parent="." instance=ExtResource("5_b4wph")]
+[node name="DirUI" type="Node2D" parent="ButtonLayer"]
+
+[node name="N" type="TextureButton" parent="ButtonLayer/DirUI"]
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 10.0
+offset_bottom = 5.0
+rotation = -1.57079
+texture_normal = ExtResource("6_d3jkd")
+texture_pressed = ExtResource("6_d3jkd")
+texture_hover = ExtResource("6_d3jkd")
+
+[node name="S" type="TextureButton" parent="ButtonLayer/DirUI"]
+offset_left = -6.0
+offset_top = 21.0
+offset_right = 9.0
+offset_bottom = 32.0
+rotation = -1.57079
+texture_normal = ExtResource("6_d3jkd")
+texture_pressed = ExtResource("6_d3jkd")
+texture_hover = ExtResource("6_d3jkd")
+flip_h = true
+
+[node name="E" type="TextureButton" parent="ButtonLayer/DirUI"]
+offset_left = 21.0
+offset_top = 6.0
+offset_right = 36.0
+offset_bottom = 17.0
+rotation = -3.14159
+texture_normal = ExtResource("6_d3jkd")
+texture_pressed = ExtResource("6_d3jkd")
+texture_hover = ExtResource("6_d3jkd")
+flip_h = true
+
+[node name="W" type="TextureButton" parent="ButtonLayer/DirUI"]
+offset_left = -6.0
+offset_top = 5.0
+offset_right = 9.0
+offset_bottom = 16.0
+rotation = -3.14159
+texture_normal = ExtResource("6_d3jkd")
+texture_pressed = ExtResource("6_d3jkd")
+texture_hover = ExtResource("6_d3jkd")
+
+[node name="SignPreview" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("5_bbk5w")
+
+[node name="Sprite2D" type="Sprite2D" parent="SignPreview"]
+texture = ExtResource("6_conm7")
+
+[node name="Exit" parent="." instance=ExtResource("5_u3awl")]
+position = Vector2(104, 0)
+
+[node name="Dwarf" parent="." instance=ExtResource("6_2ku1j")]
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Dwarf"]
 remote_path = NodePath("../../Camera2D")
 
-[node name="win_sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_1o258")
-bus = &"SFX"
-
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
 [connection signal="pressed" from="ButtonLayer/RestartButton" to="ButtonLayer/RestartButton" method="_on_pressed"]
+[connection signal="pressed" from="ButtonLayer/SignButton" to="." method="_on_sign_button_pressed"]

@@ -1,14 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch6evu4s8pk2s"]
+[gd_scene load_steps=9 format=3 uid="uid://ch6evu4s8pk2s"]
 
-[ext_resource type="Script" path="res://scenes/MenuScript.gd" id="1_qsptj"]
+[ext_resource type="Script" uid="uid://dfsvqgiko471h" path="res://scenes/scripts/menu.gd" id="1_qsptj"]
 [ext_resource type="FontFile" uid="uid://rwfovw7hwqxa" path="res://assets/tinypixel.otf" id="2_dptvt"]
+[ext_resource type="PackedScene" uid="uid://oke1qa0grqi8" path="res://scenes/dwarf.tscn" id="3_bqqt6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41yt3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ni1t1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72t7b"]
-bg_color = Color(0.596078, 0.235294, 0.156863, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vdhwp"]
 bg_color = Color(0.490196, 0.184314, 0.121569, 1)
@@ -16,7 +14,10 @@ bg_color = Color(0.490196, 0.184314, 0.121569, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wm5af"]
 bg_color = Color(0.282353, 0.0941176, 0.0509804, 1)
 
-[node name="Menu" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72t7b"]
+bg_color = Color(0.596078, 0.235294, 0.156863, 1)
+
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -30,8 +31,11 @@ script = ExtResource("1_qsptj")
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 modulate = Color(0.258824, 0.0941176, 0.0156863, 0.988235)
 material = SubResource("CanvasItemMaterial_41yt3")
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ni1t1")
 
 [node name="Button" type="Button" parent="CanvasLayer"]
@@ -40,35 +44,56 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -119.0
-offset_top = 42.0
-offset_right = 120.0
-offset_bottom = 147.0
+offset_left = -180.0
+offset_top = 233.0
+offset_right = 59.0
+offset_bottom = 338.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.48, 1.48)
 theme_override_fonts/font = ExtResource("2_dptvt")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_72t7b")
 theme_override_styles/hover = SubResource("StyleBoxFlat_vdhwp")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_wm5af")
+theme_override_styles/normal = SubResource("StyleBoxFlat_72t7b")
 text = "START"
 
 [node name="Title" type="Label" parent="CanvasLayer"]
-offset_left = 246.0
-offset_top = 141.0
-offset_right = 917.0
-offset_bottom = 239.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -482.0
+offset_top = -317.0
+offset_right = 189.0
+offset_bottom = -219.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.44955, 1.44955)
 theme_override_fonts/font = ExtResource("2_dptvt")
 theme_override_font_sizes/font_size = 56
-text = "DRUNKEN DWARVES"
+text = "DRUNKEN      DWARVES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Dwarf" parent="CanvasLayer/Title" instance=ExtResource("3_bqqt6")]
+position = Vector2(329.068, 38.6327)
+scale = Vector2(2.92, 2.92)
+
 [node name="Authors" type="Label" parent="CanvasLayer"]
-offset_left = 265.0
-offset_top = 212.0
-offset_right = 662.0
-offset_bottom = 312.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -478.0
+offset_top = -52.0
+offset_right = -81.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.56, 1.56)
 theme_override_fonts/font = ExtResource("2_dptvt")
 theme_override_font_sizes/font_size = 16
 text = "Alejandro Sicilia
@@ -76,11 +101,11 @@ Carlos A. Grillo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Authors2" type="Label" parent="CanvasLayer"]
-offset_left = 472.0
-offset_top = 211.0
-offset_right = 873.0
-offset_bottom = 311.0
+[node name="Authors2" type="Label" parent="CanvasLayer/Authors"]
+offset_left = 207.0
+offset_top = -1.0
+offset_right = 608.0
+offset_bottom = 99.0
 theme_override_fonts/font = ExtResource("2_dptvt")
 theme_override_font_sizes/font_size = 16
 text = "Olivia Solano
