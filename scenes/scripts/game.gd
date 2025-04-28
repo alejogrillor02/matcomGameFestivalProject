@@ -11,6 +11,9 @@ extends Node2D
 @onready var sign_preview: Sprite2D = $SignPreview
 @onready var exit_instance = $exit
 
+#WIN SOUND
+@onready var win_sound = $win_sound
+
 var dirs = {
 	"N": Vector2i(0, 1),
 	"S": Vector2i(0, -1),
@@ -31,6 +34,9 @@ var current_sign_position: Vector2i
 var grid: Array = []
 var current_arrows: Array = []
 var signs_placed: Array = []
+
+#WIN SOUND
+#var win_sound_played = false
 
 func _ready() -> void:
 	
@@ -135,6 +141,11 @@ func _on_move_timer_timeout() -> void:
 		move_dwarf(dwarf_dir)
 		$MoveTimer.start()
 	else:
+		#WIN SOUND
+		#if win_sound_played == false:
+		#	win_sound.play()
+		#	win_sound_played = true
+		
 		dwarf_instance.get_node("AnimatedSprite2D").play("win")
 		await get_tree().create_timer(2).timeout
 		
@@ -158,3 +169,4 @@ func move_dwarf(direction: String):
 		animated_sprite.flip_h = false
 	elif direction == "W":
 		animated_sprite.flip_h = true
+		
