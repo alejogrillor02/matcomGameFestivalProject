@@ -25,8 +25,12 @@ var exit_pos: Vector2i
 var grid: Array = []
 var game_started = false
 
-
 func _ready() -> void:
+	
+	#Poner el Level que es en el texto inicial
+	var level = int(get_tree().current_scene.scene_file_path[18])
+	title_text.text = title_text.text + str(level)
+	
 	# Determinar posición inicial basada en la posición del nodo
 	dwarf_pos = local_to_used_rect(dwarf_instance.position + Vector2(13, 13))
 	# Posición de la salida
@@ -54,6 +58,9 @@ func _ready() -> void:
 
 
 func _process(_delta):
+	#print($CanvasLayer/TitleText.text)
+	#$CanvasLayer/TitleText.text="AASSEAs"
+	#print($CanvasLayer/TitleText.text)
 	if not game_started and Input.is_action_just_pressed("ui_accept"):
 		game_started = true
 		$MoveTimer.start()
@@ -65,7 +72,7 @@ func _process(_delta):
 		
 		#Habilitar el boton de reinicio
 		restart_button.disabled = false
-		
+			
 
 
 func local_to_used_rect(pixel_pos: Vector2) -> Vector2i:
@@ -121,8 +128,13 @@ func _on_move_timer_timeout() -> void:
 		move_dwarf(dwarf_dir)
 		$MoveTimer.start()
 	else:
-		await get_tree().create_timer(1).timeout
-		get_tree().reload_current_scene()
+		#$MoveTimer.stop()
+		await get_tree().create_timer(2).timeout
+		
+		#Cargar proxima escena a partir del path
+		var level = int(get_tree().current_scene.scene_file_path[18])+1
+		var path = "res://scenes/Level"+str(level)+".tscn"
+		get_tree().change_scene_to_file(path)
 
 
 func move_dwarf(direction: String):
