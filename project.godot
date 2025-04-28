@@ -15,6 +15,7 @@ config/version="1.0"
 run/main_scene="uid://c087qn6yj835c"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="uid://gdqpm5b2p0h"
+<<<<<<<HEADrun/main_scene="res://scenes/Menu.tscn"
 
 [input]
 
@@ -29,6 +30,6 @@ move_left_click={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-viewport/hdr_2d=true
 environment/defaults/default_clear_color=Color(0.137255, 0.137255, 0.137255, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
+viewport/hdr_2d=true

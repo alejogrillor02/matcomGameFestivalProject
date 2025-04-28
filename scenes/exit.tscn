@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://uq52rolr0k7w"]
 
-[ext_resource type="Texture2D" uid="uid://ckis260vndhgh" path="res://assets/exit.png" id="1_l0aq0"]
+[ext_resource type="Texture2D" uid="uid://gdqpm5b2p0h" path="res://icon.png" id="1_epj1f"]
 
 [node name="exit" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_l0aq0")
+modulate = Color(0, 0, 1, 1)
+texture = ExtResource("1_epj1f")

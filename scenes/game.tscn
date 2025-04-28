@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://g7so8v6w3p66"]
 
 [ext_resource type="Texture2D" uid="uid://bvluu63jirxfb" path="res://assets/tileset_background.png" id="1_uwrxv"]
-[ext_resource type="Script" uid="uid://1pm4wy2tbxuh" path="res://scenes/scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="Script" path="res://scenes/scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="FontFile" uid="uid://rwfovw7hwqxa" path="res://assets/tinypixel.otf" id="2_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://oke1qa0grqi8" path="res://scenes/dwarf.tscn" id="3_lnu2h"]
-[ext_resource type="Script" uid="uid://dqwjragourw8j" path="res://scenes/scripts/restart_button.gd" id="3_p57ef"]
+[ext_resource type="Script" path="res://scenes/scripts/restart_button.gd" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://uq52rolr0k7w" path="res://scenes/exit.tscn" id="6_bxjjs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lnu2h"]
@@ -48,7 +48,7 @@ custom_data_layer_0/name = "path"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_yqjtg")
 
-[node name="Game3" type="Node2D"]
+[node name="Game4" type="Node2D"]
 script = ExtResource("1_yqjtg")
 
 [node name="MoveTimer" type="Timer" parent="."]
