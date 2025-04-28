@@ -15,7 +15,7 @@ config/version="1.0"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 boot_splash/bg_color=Color(0.258824, 0.0941176, 0.0156863, 1)
-config/icon="uid://gdqpm5b2p0h"
+config/icon="uid://dda4uvc3mac1o"
 <<<<<<<HEADrun/main_scene="res://scenes/Menu.tscn"
 
 [autoload]
