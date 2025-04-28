@@ -1,6 +1,6 @@
 extends Control
 
-@onready var dwarf_instance: Node2D = $CanvasLayer/Title/Dwarf
+@onready var dwarf_instance: Node2D = $CanvasLayer/Control/Title/Dwarf
 
 #Start
 func _on_start_pressed():

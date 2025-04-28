@@ -6,7 +6,7 @@
 [sub_resource type="GDScript" id="GDScript_o4wip"]
 script/source = "extends Control
 
-@onready var dwarf_instance: Node2D = $CanvasLayer/Title/Dwarf
+@onready var dwarf_instance: Node2D = $CanvasLayer/Control/Title/Dwarf
 
 
 func _on_exit_pressed():
@@ -41,9 +41,18 @@ script = SubResource("GDScript_o4wip")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
 modulate = Color(0.258824, 0.0941176, 0.0156863, 0.988235)
 material = SubResource("CanvasItemMaterial_41yt3")
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -51,7 +60,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ni1t1")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -71,7 +81,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_wm5af")
 theme_override_styles/normal = SubResource("StyleBoxFlat_72t7b")
 text = "EXIT"
 
-[node name="Title" type="Label" parent="CanvasLayer"]
+[node name="Title" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -90,9 +101,9 @@ text = "THANKS FOR PLAYING!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Dwarf" parent="CanvasLayer/Title" instance=ExtResource("2_8y2od")]
+[node name="Dwarf" parent="CanvasLayer/Control/Title" instance=ExtResource("2_8y2od")]
 position = Vector2(339.286, -44.6429)
 scale = Vector2(3.85896, 3.85896)
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_exit_pressed"]
