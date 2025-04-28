@@ -6,7 +6,7 @@ extends Node2D
 @onready var camera = $Camera2D
 @onready var title_text = $CanvasLayer/TitleText
 @onready var press_space_text = $CanvasLayer/PressSpaceText
-@onready var restart_button = $ButtonLayer/Button
+@onready var restart_button = $ButtonLayer/RestartButton
 
 @onready var exit_instance = $exit # Instancia de la salida
 
@@ -53,7 +53,7 @@ func _ready() -> void:
 			else:
 				grid[y].append(1)
 				
-	#Empezar con el boton deshabilitado
+	# Empezar con el boton deshabilitado
 	restart_button.disabled = true
 
 
@@ -70,7 +70,7 @@ func _process(_delta):
 		var tween = create_tween()
 		tween.tween_property(camera, "zoom", Vector2(2, 2), 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 		
-		#Habilitar el boton de reinicio
+		# Habilitar el boton de reinicio
 		restart_button.disabled = false
 			
 
@@ -154,4 +154,3 @@ func move_dwarf(direction: String):
 
 	if not animated_sprite.is_playing():
 		animated_sprite.play("walk")
-
