@@ -52,7 +52,7 @@ font = ExtResource("2_m1wu1")
 script = ExtResource("1_nbc1e")
 
 [node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2.5, 2.5)
