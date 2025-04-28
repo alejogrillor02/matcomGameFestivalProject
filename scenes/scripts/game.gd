@@ -20,8 +20,14 @@ var dirs = {
 	"W": Vector2i(-1, 0)
 }
 
+var level_counters = {
+	"1": 3,
+	"2": 5,
+	"3": 6
+}
+
 var dwarf_dir = "E"
-var sign_counter = 2
+var sign_counter
 
 var game_started = false
 var sign_placement_mode = false
@@ -36,7 +42,7 @@ var signs_placed: Array = []
 func _ready() -> void:
 	
 	var level = int(get_tree().current_scene.scene_file_path[18])
-
+	sign_counter = level_counters[str(level)]
 	title_text.text = title_text.text + str(level)
 	
 	dwarf_pos = local_to_used_rect(dwarf_instance.position + Vector2(13, 13))
@@ -162,10 +168,9 @@ func move_dwarf(direction: String) -> void:
 
 
 func _on_sign_button_pressed():
-	if sign_counter > 0:
-		sign_placement_mode = true
-		sign_preview.show()
-		sign_preview.position = get_global_mouse_position()
+	sign_placement_mode = true
+	sign_preview.show()
+	sign_preview.position = get_global_mouse_position()		
 
 
 func _input(event):
@@ -193,6 +198,10 @@ func place_sign(pos: Vector2) -> void:
 	add_child(new_sign)
 	exit_sign_placement_mode()
 	signs_placed.append(local_to_used_rect(pos))
+	sign_counter -= 1
+	sign_button.get_node("Label").text = "x%d" % sign_counter
+	if sign_counter == 0:
+		sign_button.disabled = true
 
 
 func exit_sign_placement_mode():
